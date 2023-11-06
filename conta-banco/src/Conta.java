@@ -1,16 +1,18 @@
 public class Conta {
-
+   
+    private static int contadorAgencia = 1;
     private static int contadorDecontas = 1;
     
-    private int numeroConta;
-    private String agencia;
+    private int agencia;
+    private int numeroConta;    
     private Cliente cliente;
     private Double saldo = 0.0;
 
-    public Conta(Cliente cliente, String agencia) {
+    public Conta(Cliente cliente) {
         this.numeroConta = contadorDecontas;
-        this.agencia = agencia;
+        this.agencia = contadorAgencia;
         this.cliente = cliente;
+        contadorAgencia += 1;
         contadorDecontas += 1;        
     }
 
@@ -24,11 +26,11 @@ public class Conta {
 
     
 
-    public String getAgencia() {
+    public int getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(String agencia) {
+    public void setAgencia(int agencia) {
         this.agencia = agencia;
     }
 

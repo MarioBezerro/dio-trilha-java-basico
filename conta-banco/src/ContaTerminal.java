@@ -67,7 +67,7 @@ public class ContaTerminal {
 
         Cliente cliente = new Cliente(name, cpf, email);
 
-        Conta conta = new Conta(cliente, email);
+        Conta conta = new Conta(cliente);        
 
         contasBancarias.add(conta);
         System.out.println("Sua conta foi criada com sucesso!!");
