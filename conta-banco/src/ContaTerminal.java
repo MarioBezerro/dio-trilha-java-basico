@@ -70,8 +70,6 @@ public class ContaTerminal {
         Conta conta = new Conta(cliente);        
 
         contasBancarias.add(conta);
-        //System.out.println("\nOlá , obrigado por criar uma conta em nosso banco, sua agência é:  conta número:  e seu saldo é:  já está disponível./n");
-       
             System.out.printf("\nOlá Seja Bem Vindo!!\n %s, \n\nObrigado por criar uma conta em nosso banco é seja bem vindo, sua agência é %s, " +
                             "conta %d e seu saldo: R$ %.2f já está disponível.\n\n"
                     ,conta.getCliente(),conta.getAgencia(),conta.getNumeroConta(),conta.getSaldo());        
