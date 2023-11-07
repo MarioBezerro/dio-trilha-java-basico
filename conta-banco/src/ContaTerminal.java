@@ -14,16 +14,16 @@ public class ContaTerminal {
     public static void operacoes() {
 
         System.out.println("------------------------------------------------------");
-        System.out.println("-------------Bem vindos a nossa AgÃªncia---------------");
+        System.out.println("-------------Bem vindos a nossa Agência---------------");
         System.out.println("------------------------------------------------------");
-        System.out.println("***** Selecione uma operaÃ§Ã£o que deseja realizar *****");
+        System.out.println("***** Selecione uma operação que deseja realizar *****");
         System.out.println("------------------------------------------------------");
-        System.out.println("|   OpÃ§Ã£o 1 - Criar conta   |");
-        System.out.println("|   OpÃ§Ã£o 2 - Depositar     |");
-        System.out.println("|   OpÃ§Ã£o 3 - Sacar         |");
-        System.out.println("|   OpÃ§Ã£o 4 - Transferir    |");
-        System.out.println("|   OpÃ§Ã£o 5 - Listar        |");
-        System.out.println("|   OpÃ§Ã£o 6 - Sair          |");
+        System.out.println("|   Opção 1 - Criar conta   |");
+        System.out.println("|   Opção 2 - Depositar     |");
+        System.out.println("|   Opção 3 - Sacar         |");
+        System.out.println("|   Opção 4 - Transferir    |");
+        System.out.println("|   Opção 5 - Listar        |");
+        System.out.println("|   Opção 6 - Sair          |");
 
         int operacao = input.nextInt();
 
@@ -44,10 +44,10 @@ public class ContaTerminal {
                 listarContas();
                 break;
             case 6:
-                System.out.println("Obrigado por ultilizar nossa agÃªncia");
+                System.out.println("Obrigado por ultilizar nossa agência");
                 System.exit(0);
             default:
-            System.out.println("OpÃ§Ã£o invÃ¡lida");
+            System.out.println("Opçãoo inválida");
             operacoes();
             break;            
             
@@ -56,7 +56,7 @@ public class ContaTerminal {
 
     public static void criarConta() {
 
-        System.out.println("|nNome: ");
+        System.out.println("\nNome: ");
         String name = input.next();
 
         System.out.println("\nCPF: ");
@@ -70,10 +70,15 @@ public class ContaTerminal {
         Conta conta = new Conta(cliente);        
 
         contasBancarias.add(conta);
-        System.out.println("Sua conta foi criada com sucesso!!");
-
+        //System.out.println("\nOlá , obrigado por criar uma conta em nosso banco, sua agência é:  conta número:  e seu saldo é:  já está disponível./n");
+       
+            System.out.printf("\nOlá Seja Bem Vindo!!\n %s, \n\nObrigado por criar uma conta em nosso banco é seja bem vindo, sua agência é %s, " +
+                            "conta %d e seu saldo: R$ %.2f já está disponível.\n\n"
+                    ,conta.getCliente(),conta.getAgencia(),conta.getNumeroConta(),conta.getSaldo());        
+ 
         operacoes();
     }
+    
 
     private static Conta encontrarConta(int numeroConta) {
         Conta conta = null;
@@ -88,7 +93,7 @@ public class ContaTerminal {
     }
 
     public static void depositar() {
-        System.out.println("NÃºmero da conta: ");
+        System.out.println("Número da conta: ");
         int numeroConta = input.nextInt();
 
         Conta conta = encontrarConta(numeroConta);
@@ -99,36 +104,36 @@ public class ContaTerminal {
             conta.depositar(valorDeposito); 
             System.out.println("Valor depositado com sucesso!! ");
         } else {
-            System.out.println("Conta nÃ£o encontrada!! ");
+            System.out.println("Conta não encontrada!! ");
         }
         operacoes();
     }
 
     public static void sacar() {
-        System.out.println("NÃºmero da conta: ");
+        System.out.println("Número da conta: ");
         int numeroConta = input.nextInt();
 
         Conta conta = encontrarConta(numeroConta);
 
         if (conta != null) {
-            System.out.println("Qual o valor deseja sacar? ");
+            System.out.println("Qual o valor deseja sacar?\n ");
             Double valorSaque = input.nextDouble();
             conta.sacar(valorSaque);
             //System.out.println("Valor sacado com sucesso!! ");
         } else {
-            System.out.println("Conta nÃ£o encontrada!! ");
+            System.out.println("Conta não encontrada!! ");
         }
         operacoes();
     }
 
     public static void transferir() {
-        System.out.println("NÃºmero da conta do remetente: ");
+        System.out.println("Número da conta do remetente: ");
         int numeroContaRemetente = input.nextInt();
 
         Conta contaRemetente = encontrarConta(numeroContaRemetente);
 
         if (contaRemetente != null) {
-            System.out.println("NÃºmero da conta do destinatÃ¡rio: ");
+            System.out.println("Número da conta do destinatário: ");
             int numeroContaDestinatario = input.nextInt();
 
             Conta contaDestinatario =  encontrarConta(numeroContaDestinatario);
@@ -139,20 +144,24 @@ public class ContaTerminal {
 
                 contaRemetente.transferir(contaDestinatario, valor);
             } else {
-                System.out.println("Conta nÃ£o encontrada!! ");
+                System.out.println("Conta não encontrada!! ");
             }
             operacoes();            
         }                
     }
 
     public static void listarContas() {
-          if (contasBancarias.size() > 0) {
-            for (Conta conta : contasBancarias) {
-                System.out.println(conta);
-            }
+        System.out.println("Número da conta: ");
+        int numeroConta = input.nextInt();
+
+        Conta conta = encontrarConta(numeroConta);
+
+          if (conta != null) {            
+                System.out.println(conta);            
           } else {
-            System.out.println("NÃ£o hÃ¡ contas cadastradas! ");
-          }
-          operacoes();
+                System.out.println("Não há contas cadastradas! "); 
         }
+        operacoes();
+    }
 }
+

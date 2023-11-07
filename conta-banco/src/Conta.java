@@ -1,18 +1,16 @@
 public class Conta {
    
-    private static int contadorAgencia = 1;
     private static int contadorDecontas = 1;
     
-    private int agencia;
+    public String agencia = ("20023-11");
     private int numeroConta;    
     private Cliente cliente;
     private Double saldo = 0.0;
 
-    public Conta(Cliente cliente) {
-        this.numeroConta = contadorDecontas;
-        this.agencia = contadorAgencia;
-        this.cliente = cliente;
-        contadorAgencia += 1;
+    public Conta(Cliente cliente) { 
+        this.agencia = ("2023-11");       
+        this.numeroConta = contadorDecontas;       
+        this.cliente = cliente;        
         contadorDecontas += 1;        
     }
 
@@ -22,15 +20,13 @@ public class Conta {
 
     public void setNumeroConta(int numeroConta) {
         this.numeroConta = numeroConta;
-    }
+    }    
 
-    
-
-    public int getAgencia() {
+    public String getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(String agencia) {
         this.agencia = agencia;
     }
 
@@ -50,19 +46,21 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public String toString() {
-        return  "\nNúmero da conta: " + this.getNumeroConta() +
+    public String toString() {                
+        return  "\nAgência: " + this.getAgencia() +
+                "\nNúmero da conta: " + this.getNumeroConta() +
                 "\nNome: " + this.cliente.getName() + 
                 "\nCPF: " + this.cliente.getCpf() + 
                 "\nEmail: " + this.cliente.getEmail() +
                 "\nSaldo: " + Utils.doubleToString(this.getSaldo()) + 
-                "\n";  
+                "\n";                  
     }
 
+        
     public void depositar(Double valor) {
         if(valor > 0) {
             setSaldo(getSaldo() + valor);
-            System.out.println("Seu depósito foi realizado com sucesso!!");
+            System.out.println("Seu depósito foi realizado com sucesso!!\n");
         }else{
             System.out.println("Não foi possível realizar a operação!!");
         }
@@ -71,7 +69,7 @@ public class Conta {
     public void sacar(Double valor) {
         if(valor > 0 && this.getSaldo() >= valor) {
             setSaldo(getSaldo() - valor);
-            System.out.println("Seu saque realizado com sucesso!!");
+            System.out.println("Seu saque realizado com sucesso!!\n");
         }else{
             System.out.println("Saldo insuficiente não foi possível realizar a operação!!");
         }
@@ -82,7 +80,7 @@ public class Conta {
             setSaldo(getSaldo() - valor);
 
             contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
-            System.out.println("Transferência realizada com sucesso!!");
+            System.out.println("Transferência realizada com sucesso!!\n");
         }else{
             System.out.println("Saldo insuficiente não foi possível realizar a operação!!");
         }
